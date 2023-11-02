@@ -1,0 +1,15 @@
+{
+  "name": "@wongoji/root",
+  "description": "Root package for Wongoji packages",
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "private": true,
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
