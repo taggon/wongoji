@@ -1,13 +1,17 @@
 {
   "name": "@wongoji/counter",
-  "module": "src/index.ts",
   "type": "module",
   "version": "0.0.1",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "bun test",
     "dev": "bun test --watch",
     "build:types": "tsc ./src/index.ts --declaration --emitDeclarationOnly --declarationDir ./dist",
-    "build:lib": "bun build ./src/index.ts --target node --minify --sourcemap=external --outdir ./dist",
+    "build:lib": "bun build ./src/index.ts --target node --format esm --minify --sourcemap=external --outdir ./dist",
     "build": "rm -rf dist && bun run build:types && bun run build:lib"
   },
   "devDependencies": {
