@@ -8,6 +8,16 @@
 import count from '@wongoji/counter';
 
 const result = count('Wongoji Counter는 정확한 원고지 매수를 알려주는 유틸리티입니다.');
+
+console.log(result);
+// 결과
+// {
+//   pages: 1,
+//   squares: 37,
+//   lines: 2, 
+// }
 ```
 
 ## 버그 신고
+
+버그나 이슈는 [taggon/wongoji](https://github.com/taggon/wongoji/issues) 저장소에 등록해주세요.
