@@ -1,0 +1,478 @@
+// Bun Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Case #1: 안녕하세요.반갑습니다. 1`] = `
+[
+  {
+    "raw": "안녕하세요",
+    "type": "fulltext",
+  },
+  {
+    "raw": ".",
+    "type": "punctuation",
+  },
+  {
+    "raw": "반갑습니다",
+    "type": "fulltext",
+  },
+  {
+    "raw": ".",
+    "type": "punctuation",
+  },
+]
+`;
+
+exports[`Case #2: 대한민국은 Korea이다. 1`] = `
+[
+  {
+    "raw": "대한민국은",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "K",
+    "type": "fulltext",
+  },
+  {
+    "raw": "orea",
+    "type": "halftext",
+  },
+  {
+    "raw": "이다",
+    "type": "fulltext",
+  },
+  {
+    "raw": ".",
+    "type": "punctuation",
+  },
+]
+`;
+
+exports[`Case #3: 걸음도 해깝고 방울소리가 밤 벌판에 한층 청청하게 울렸다.
+달이 어지간히 기울어졌다. 1`] = `
+[
+  {
+    "raw": "걸음도",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "해깝고",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "방울소리가",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "밤",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "벌판에",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "한층",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "청청하게",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "울렸다",
+    "type": "fulltext",
+  },
+  {
+    "raw": ".",
+    "type": "punctuation",
+  },
+  {
+    "raw": 
+"
+"
+,
+    "type": "newline",
+  },
+  {
+    "raw": "달이",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "어지간히",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "기울어졌다",
+    "type": "fulltext",
+  },
+  {
+    "raw": ".",
+    "type": "punctuation",
+  },
+]
+`;
+
+exports[`Case #4: "이걸 까셀라 부다!"하고 소리를 쳤다. 1`] = `
+[
+  {
+    "raw": """,
+    "type": "quote",
+  },
+  {
+    "raw": "이걸",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "까셀라",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "부다",
+    "type": "fulltext",
+  },
+  {
+    "raw": "!",
+    "type": "punctuation",
+  },
+  {
+    "raw": """,
+    "type": "quote",
+  },
+  {
+    "raw": "하고",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "소리를",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "쳤다",
+    "type": "fulltext",
+  },
+  {
+    "raw": ".",
+    "type": "punctuation",
+  },
+]
+`;
+
+exports[`Case #5: 대체 이게 웬 속인지(지금까지도 난 영문을 모른다) 아버질 혼내 주기는 제가 내래 놓고 이제 와서는 달려들며,"에그머니! 이 망할 게 아버지 죽이네!"하고 내 귀를 뒤로 잡아당기며 마냥 우는 것이 아니냐. 1`] = `
+[
+  {
+    "raw": "대체",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "이게",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "웬",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "속인지(지금까지도",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "난",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "영문을",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "모른다)",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "아버질",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "혼내",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "주기는",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "제가",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "내래",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "놓고",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "이제",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "와서는",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "달려들며",
+    "type": "fulltext",
+  },
+  {
+    "raw": ",",
+    "type": "punctuation",
+  },
+  {
+    "raw": """,
+    "type": "quote",
+  },
+  {
+    "raw": "에그머니",
+    "type": "fulltext",
+  },
+  {
+    "raw": "!",
+    "type": "punctuation",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "이",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "망할",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "게",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "아버지",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "죽이네",
+    "type": "fulltext",
+  },
+  {
+    "raw": "!",
+    "type": "punctuation",
+  },
+  {
+    "raw": """,
+    "type": "quote",
+  },
+  {
+    "raw": "하고",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "내",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "귀를",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "뒤로",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "잡아당기며",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "마냥",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "우는",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "것이",
+    "type": "fulltext",
+  },
+  {
+    "raw": " ",
+    "type": "space",
+  },
+  {
+    "raw": "아니냐",
+    "type": "fulltext",
+  },
+  {
+    "raw": ".",
+    "type": "punctuation",
+  },
+]
+`;
