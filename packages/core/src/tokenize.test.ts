@@ -1,5 +1,5 @@
 import { expect, test } from 'bun:test';
-import { tokenize, type Token } from './tokennize';
+import { tokenize, type Token } from './tokenize';
 
 const testCases = [
   '안녕하세요.반갑습니다.',
