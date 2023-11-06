@@ -2,6 +2,8 @@
   "name": "@wongoji/counter",
   "type": "module",
   "version": "0.0.1",
+  "description": "Count lines and words based on Korean wongoji writing system",
+  "keywords": ["text", "editor", "korean", "wongoji"],
   "files": [
     "dist"
   ],
