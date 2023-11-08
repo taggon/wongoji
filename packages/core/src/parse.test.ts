@@ -14,3 +14,8 @@ testCases.forEach((text, index) => {
     expect(parse(text)).toMatchSnapshot();
   });
 });
+
+test('replaceDotsWithEllipsis 옵션을 켜면 점 세 개를 …으로 변경한다.', () => {
+  expect(parse('그런...', { replaceDotsWithEllipsis: false })).toMatchSnapshot();
+  expect(parse('그런...', { replaceDotsWithEllipsis: true })).toMatchSnapshot();
+});

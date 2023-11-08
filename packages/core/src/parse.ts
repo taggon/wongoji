@@ -1,4 +1,5 @@
 import { tokenize, type Token } from './tokenize';
+import type { WongojiConfig } from './config';
 
 export type Document = {
   type: 'document';
@@ -136,7 +137,11 @@ function parseTokensIntoNodes(parent: ParentNode, tokens: Token[], from: number,
   }
 }
 
-export function parse(text: string): Document {
+export function parse(text: string, config: WongojiConfig = {}): Document {
+  if (config.replaceDotsWithEllipsis) {
+    text = text.replace(/\.{3}/g, '…');
+  }
+
   const tokens = tokenize(text);
   const doc: Document = { type: 'document', nodes: [] };
 

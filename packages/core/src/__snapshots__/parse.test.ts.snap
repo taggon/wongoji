@@ -466,3 +466,49 @@ exports[`Case #5: 대체 이게 웬 속인지(지금까지도 난 영문을 모�
   "type": "document",
 }
 `;
+
+exports[`replaceDotsWithEllipsis 옵션을 켜면 점 세 개를 …으로 변경한다. 1`] = `
+{
+  "nodes": [
+    {
+      "nodes": [
+        {
+          "raw": "그런",
+          "type": "fulltext",
+        },
+        {
+          "raw": ".",
+          "type": "punctuation",
+        },
+        {
+          "raw": ".",
+          "type": "punctuation",
+        },
+        {
+          "raw": ".",
+          "type": "punctuation",
+        },
+      ],
+      "type": "paragraph",
+    },
+  ],
+  "type": "document",
+}
+`;
+
+exports[`replaceDotsWithEllipsis 옵션을 켜면 점 세 개를 …으로 변경한다. 2`] = `
+{
+  "nodes": [
+    {
+      "nodes": [
+        {
+          "raw": "그런…",
+          "type": "fulltext",
+        },
+      ],
+      "type": "paragraph",
+    },
+  ],
+  "type": "document",
+}
+`;
