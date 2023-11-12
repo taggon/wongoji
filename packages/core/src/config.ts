@@ -1,12 +1,15 @@
 export type WongojiConfig = {
   /**
-   * 인용문은 항상 새 줄에서 시작한다. false라 하더라도 줄 바꿈 문자가 인용문 앞에 있으면 새 줄에서 시작한다.
+   * 큰따옴표 인용문은 항상 새 줄에서 시작한다. false라 하더라도 줄 바꿈 문자가 인용문 앞에 있으면 새 줄에서 시작한다.
    * 기본값 false
+   *
+   * true: 인용문은 항상 새 줄에서 시작한다.
+   * false: 문단 내에 있는 인용문은 줄바꿈을 하지 않는다.
    */
   alwaysNewLineWithQuote?: boolean;
 
   /**
-   * 따옴표와 홑따옴표를 “” 혹은 ‘’로 바꾼다. 기본값 false
+   * 큰따옴표와 작은따옴표를 “” 혹은 ‘’로 바꾼다. 기본값 false
    */
   useSmartQuote?: boolean;
 
