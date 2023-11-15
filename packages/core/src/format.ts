@@ -1,7 +1,16 @@
-import { parse, type Quote, type SingleQuote } from './parse';
+import { parse } from './parse';
+import type { Node, ParentNode, Document, Quote, SingleQuote } from './parse';
 import type { WongojiConfig } from './config';
 
-const WONGOJI_WIDTH = 20;
+/**
+ * 원고지 한 줄의 칸 수
+ */
+const WONGOJI_ROW_SIZE = 20;
+
+/**
+ * 따옴표 기호
+ */
+const QUOTE_SYMBOLS = `""\u201c\u201d''\u2018\u2019`;
 
 /**
  * 주어진 원고지 형식에 맞추어 텍스트를 이차원 배열로 반환한다.
@@ -12,59 +21,141 @@ const WONGOJI_WIDTH = 20;
  */
 export function format(text: string, config: WongojiConfig = {}): string[][] {
   const doc = parse(text);
+  const lines: string[][] = [[]];
 
-  return doc.nodes.reduce((lines, { type, nodes }) => {
-    let currentLine: string[] = [];
-
-    // 일단 새 줄을 추가하고 시작
-    lines.push(currentLine);
-
-    // 새 문단이나 인용문을 시작할 때는 한 칸 비우고 시작한다.
-    currentLine.push(' ');
-
-    for (const node of nodes) {
-      switch (node.type) {
-        case 'fulltext':
-          let text = node.raw;
-          while (currentLine.length + text.length > WONGOJI_WIDTH) {
-            const first = text.slice(0, WONGOJI_WIDTH - currentLine.length);
-            text = text.slice(WONGOJI_WIDTH - currentLine.length);
-            currentLine.push(...first.split(''));
-            lines.push(currentLine = []);
-          }
-          currentLine.push(...text.split(''));
-          break;
-        case 'halftext':
-          for (let i=0; i < node.raw.length; i+=2) {
-            const ch = node.raw.slice(i, i + 2);
-            currentLine.push(ch);
-
-            if (currentLine.length === WONGOJI_WIDTH) {
-              lines.push(currentLine = []);
-            }
-          }
-          break;
-        case 'space':
-          if (currentLine.length > 0) {
-            currentLine.push(' ');
-          }
-          break;
-        case 'punctuation':
-          if (currentLine.length === 0 && lines.length > 1) {
-            const secondLastLine = lines[lines.length - 2];
-            const lastText = secondLastLine.pop();
-            secondLastLine.push(...currentLine);
-          } else {
-            currentLine.push(node.raw);
-          }
-          break;
-      }
-
-      if (currentLine.length === 20) {
-        lines.push(currentLine = []);
-      }
+  const walker = (node: Node, parent: ParentNode) => {
+    if (lines[lines.length - 1].length === WONGOJI_ROW_SIZE) {
+      lines.push([]);
     }
 
-    return lines;
-  }, [] as string[][]);;
+    // current line
+    let cur = lines[lines.length - 1];
+    const len = cur.length;
+
+    switch (node.type) {
+      case 'paragraph':
+        // 문단은 새 줄에서 한 칸 비우고 시작한다.
+        if (cur.length === 0) {
+          cur.push(' ');
+        } else {
+          lines.push([' ']);
+          cur = lines[lines.length - 1];
+        }
+        node.nodes.forEach((child) => walker(child, node));
+        break;
+      case 'quote':
+      case 'singlequote':
+        const symbolIndex = (node.type === 'quote' ? 0 : 4) + (config.useSmartQuote ? 2 : 0);
+
+        if (needNewLine(node, config)) {
+          // 이미 공백이 하나 있으면 그대로 쓰자.
+          if (cur.length === 1 && cur[0] === ' ') {
+            cur.pop();
+          }
+
+          if (cur.length > 0) {
+            lines.push([' ']);
+            cur = lines[lines.length - 1];
+          } else {
+            cur.push(' ');
+          }
+        }
+
+        // 여는 (작은)따옴표
+        cur.push(QUOTE_SYMBOLS[symbolIndex]);
+
+        node.nodes.forEach((child) => walker(child, node));
+
+        cur = lines[lines.length - 1];
+
+        // 닫는 따옴표 앞의 공백은 제거한다.
+        if (cur[cur.length - 1] === ' ') {
+          cur.pop();
+          cur = lines[lines.length - 1];
+        }
+
+        // 닫는 (작은)따옴표
+        if (cur[cur.length - 1] === '.') {
+          // 앞에 온점이 있으면 같은 칸에 표시한다.
+          cur.pop();
+          cur.push(`.${QUOTE_SYMBOLS[symbolIndex + 1]}`);
+        } else {
+          cur.push(QUOTE_SYMBOLS[symbolIndex + 1]);
+        }
+
+        if (needNewLine(node, config)) {
+          lines.push([]);
+        }
+        break;
+      case 'space':
+        if (cur.length > 0) {
+          cur.push(' ');
+        }
+        break;
+      case 'fulltext':
+        {
+          let text = node.raw;
+          for (let i = 0; i < text.length; i++) {
+            cur.push(text[i]);
+            if (cur.length === WONGOJI_ROW_SIZE) {
+              lines.push([]);
+              cur = lines[lines.length - 1];
+
+              if ((parent.type === 'quote' || parent.type === 'singlequote') && needNewLine(parent, config)) {
+                cur.push(' ');
+              }
+            }
+          }
+        }
+        break;
+      case 'halftext':
+        {
+          let text = node.raw;
+          for (let i = 0; i < text.length; i+=2) {
+            cur.push(text.slice(i, i + 2));
+            if (cur.length === WONGOJI_ROW_SIZE) {
+              lines.push([]);
+              cur = lines[lines.length - 1];
+
+              if ((parent.type === 'quote' || parent.type === 'singlequote') && needNewLine(parent, config)) {
+                cur.push(' ');
+              }
+            }
+          }
+        }
+        break;
+      case 'punctuation':
+        // 온점이나 반점인데 줄 시작이면 앞 글자에 붙인다.
+        if (['.', ','].includes(node.raw) && len === 0) {
+          lines.pop();
+          const lastLine = lines[lines.length - 1];
+          lastLine[lastLine.length - 1] += node.raw;
+        } else {
+          // 그 외에는 그대로 추가한다.
+          cur.push(node.raw);
+        }
+
+        // 느낌표나 물음표이고 이어질 형제 노드가 있다면 공백을 추가한다.
+        if (['!', '?'].includes(node.raw)) {
+          if (parent.type !== 'document' && parent.nodes.indexOf(node) < parent.nodes.length - 1) {
+            walker({ type: 'space' }, parent);
+          }
+        }
+        break;
+    }
+  };
+
+  doc.nodes.forEach((node) => walker(node, doc));
+
+  if (lines[lines.length - 1].length === 0) {
+    lines.pop();
+  }
+
+  return lines;
+}
+
+function needNewLine(node: Quote | SingleQuote, config: WongojiConfig) {
+  if (!node.inline) return true;
+  if (config.alwaysNewLineWithQuote && node.type === 'quote') return true;
+  return false;
 }

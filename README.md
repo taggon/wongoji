@@ -6,6 +6,7 @@
 
 다음과 같은 유틸리티를 제공하고 있습니다. 각 패키지에 대한 설명은 패키지 디렉토리에 있는 설명을 참조하세요.
 
+- [@wongoji/core](./packages/core/README.md): 다른 원고지 패키지에서 사용할 공통 함수를 제공합니다.
 - [@wongoji/counter](./packages/counter/README.md): 주어진 텍스트가 원고지 몇 매가 되는지 정확하게 계산합니다.
 
 ## 규칙

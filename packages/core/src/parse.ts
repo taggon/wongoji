@@ -14,11 +14,13 @@ export type Paragraph = {
 export type Quote = {
   type: 'quote';
   nodes: (FullText | HalfText | Space | Punctuation | SingleQuote)[];
+  inline: boolean;
 };
 
 export type SingleQuote = {
   type: 'singlequote';
   nodes: (FullText | HalfText | Space | Punctuation)[];
+  inline: boolean;
 };
 
 export type Space = {
@@ -40,7 +42,9 @@ export type Punctuation = {
   raw: string;
 };
 
-type ParentNode = Document | Paragraph | Quote | SingleQuote;
+export type ParentNode = Document | Paragraph | Quote | SingleQuote;
+
+export type Node = ParentNode | Space | FullText | HalfText | Punctuation;
 
 function eat(tokens: Token[], types: Token['type'][], start: number) {
   let i = start - 1;
@@ -79,7 +83,7 @@ function parseTokensIntoNodes(parent: ParentNode, tokens: Token[], from: number,
           raw: tok.raw,
         });
 
-        // 문장 부호라면 뒤따른 공백을 무시한다.
+        // 문장 부호라면 뒤따른 공백을 무시한 다음...
         if (tok.type === 'punctuation') {
           i = eat(tokens, ['space'], i + 1);
         }
@@ -88,6 +92,11 @@ function parseTokensIntoNodes(parent: ParentNode, tokens: Token[], from: number,
         // 최상위 노드에는 공백이 허용되지 않는다.
         if (parent.type === 'document') continue;
         if (parent.nodes.length > 0) {
+          // 바로 앞 노드가 인용문이라면 공백을 무시한다.
+          const lastNode = parent.nodes[parent.nodes.length - 1];
+          if (lastNode.type === 'quote' || lastNode.type === 'singlequote') {
+            continue;
+          }
           parent.nodes.push({ type: 'space' });
         }
         break;
@@ -109,7 +118,7 @@ function parseTokensIntoNodes(parent: ParentNode, tokens: Token[], from: number,
         if (closingQuoteIndex === -1) {
           // TODO: 닫는 따옴표를 찾지 못했을 때의 에러 처리
         } else {
-          const quote: Quote | SingleQuote = { type: tok.raw === '"' ? 'quote' :  'singlequote', nodes: [] };
+          const quote: Quote | SingleQuote = { type: tok.raw === '"' ? 'quote' :  'singlequote', nodes: [], inline: parent.type != 'document' };
           parseTokensIntoNodes(quote, tokens, start, closingQuoteIndex);
 
           // 문단을 따옴표로 시작했지만, 보통 문단의 일부인 경우
@@ -121,6 +130,7 @@ function parseTokensIntoNodes(parent: ParentNode, tokens: Token[], from: number,
 
               // 뒤이어 나오는 문장을 같은 문단으로 처리한다.
               parent = paragraph;
+              quote.inline = true;
               continue;
             }
           }
