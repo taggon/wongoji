@@ -1,5 +1,5 @@
 import { parse } from './parse';
-import type { Node, ParentNode, Document, Quote, SingleQuote } from './parse';
+import type { Node, ParentNode, Quote, SingleQuote } from './parse';
 import type { WongojiConfig } from './config';
 
 /**

@@ -1,3 +1,12 @@
 {
   "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "outDir": "./dist",
+    "declarationDir": "./dist"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["src/**/*.test.ts", "src/__snapshots__/**/*"]
 }
