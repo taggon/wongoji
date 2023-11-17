@@ -18,7 +18,7 @@
   "scripts": {
     "test": "bun test",
     "dev": "bun test --watch",
-    "build:types": "tsc",
+    "build:types": "tsc -p ./tsconfig.build.json",
     "build:lib": "bun build ./src/index.ts --target node --minify --sourcemap=external --outdir dist --outfile index.mjs",
     "build": "rm -rf dist && bun run build:types && bun run build:lib"
   },
