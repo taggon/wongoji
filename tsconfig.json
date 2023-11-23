@@ -2,9 +2,11 @@
   "compilerOptions": {
     "lib": ["ESNext"],
     "module": "esnext",
-    "target": "esnext",
+    "target": "es2019",
     "moduleResolution": "bundler",
     "moduleDetection": "force",
+    "composite": true,
+    "esModuleInterop": true,
     "allowImportingTsExtensions": true,
     "emitDeclarationOnly": true,
     "declaration": true,

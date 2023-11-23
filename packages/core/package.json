@@ -1,19 +1,13 @@
 {
   "name": "@wongoji/core",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "keywords": ["text", "editor", "korean", "wongoji"],
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "import": {
-    ".": {
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      }
-    }
-  },
   "license": "BSD-3-Clause",
   "scripts": {
     "test": "bun test",
@@ -23,9 +17,7 @@
     "build": "rm -rf dist && bun run build:types && bun run build:lib"
   },
   "devDependencies": {
-    "bun-types": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
+    "bun-types": "latest",
+    "typescript": "^5.3.2"
   }
 }
