@@ -1,0 +1,19 @@
+{
+  "name": "@wongoji/dom",
+  "description": "A DOM renderer for Wongoji",
+  "version": "0.1.0",
+  "type": "module",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "keywords": ["text", "editor", "korean", "wongoji"],
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "bun-types": "latest",
+    "typescript": "^5.3.2"
+  },
+  "dependencies": {
+    "@wongoji/core": "workspace:*"
+  }
+}

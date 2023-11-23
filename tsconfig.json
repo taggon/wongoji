@@ -5,7 +5,7 @@
     "target": "es2019",
     "moduleResolution": "bundler",
     "moduleDetection": "force",
-    "composite": true,
+    "composite": false,
     "esModuleInterop": true,
     "allowImportingTsExtensions": true,
     "emitDeclarationOnly": true,
