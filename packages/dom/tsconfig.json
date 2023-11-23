@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "lib": ["es2017", "DOM"],
+    "target": "es6",
+    "noEmit": false,
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "outDir": "./dist",
+    "declarationDir": "./dist",
+    "types": ["bun-types", "./types/dom.d.ts"]
+  },
+  "include": ["src/**/*", "types/*.ts", "*.ts"],
+  "exclude": ["src/**/*.test.ts"]
+}
