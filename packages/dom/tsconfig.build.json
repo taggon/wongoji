@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "lib": ["ESNext", "DOM"],
+    "outDir": "./dist",
+    "declarationDir": "./dist",
+    "rootDir": "./src",
+    "composite": false
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["src/**/*.test.ts", "src/__snapshots__/**/*"]
+}

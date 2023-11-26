@@ -1,0 +1,28 @@
+{
+  "name": "@wongoji/dom",
+  "module": "dist/lib.js",
+  "type": "module",
+  "keywords": ["text", "editor", "korean", "wongoji"],
+  "files": [
+    "dist"
+  ],
+  "license": "BSD-3-Clause",
+  "scripts": {
+    "test": "bun test",
+    "dev": "bun  run dev.ts",
+    "build:types": "tsc -p ./tsconfig.build.json",
+    "build:lib": "bun build ./src/lib.ts --target node --minify --sourcemap=external --outdir dist",
+    "build": "rm -rf dist && bun run build:types && bun run build:lib"
+  },
+  "devDependencies": {
+    "bun-lightningcss": "^0.2.0",
+    "bun-plugin-html": "^1.2.0",
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@wongoji/core": "^0.1.0"
+  }
+}

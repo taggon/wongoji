@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wongoji</title>
+</head>
+<body>
+  <h1>원고지 렌더링</h1>
+  <p>텍스트를 입력하면 원고지 형식으로 렌더링합니다.</p>
+  <textarea id="input" rows="10" cols="120">안녕하세요! 반가워요.</textarea>
+  <button id="btn">원고지 표시</button>
+  <div id="stack"></div>
+
+  <script type="module">
+    import { render } from '/dist/lib.js';
+
+    const input = document.getElementById('input');
+    const btn = document.getElementById('btn');
+
+    btn.addEventListener('click', () => {
+      render(document.getElementById('stack'), input.value);
+    });
+  </script>
+</body>
+</html>

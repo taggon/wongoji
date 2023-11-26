@@ -1,0 +1,7 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "types": ["bun-types", "./types/dom.d.ts"]
+  },
+  "include": ["src/**/*.ts", "./dev.ts"],
+}
